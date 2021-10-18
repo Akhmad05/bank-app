@@ -13,18 +13,21 @@
 
     <context:component-scan base-package="ru.developer"/>
 
-    <context:property-placeholder location="classpath:sqlCommand.properties" />
+    <context:property-placeholder location="classpath:sqlCommand.properties"/>
 
     <mvc:annotation-driven/>
 
     <mvc:default-servlet-handler/>
 
 
-    <bean id = "viewProvider"
-          class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name = "prefix" value = "/WEB-INF/views/"/>
-        <property name = "suffix" value = ".jsp"/>
+    <bean id="viewProvider"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
 
+    <bean
+          class="ru.developer.DbConnection">
     </bean>
 
 </beans>
