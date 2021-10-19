@@ -5,26 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.developer.Service.UsersService;
-import ru.developer.dao.PersonDAO;
 
 
 @Controller
 public class MainController {
-    @Autowired
-    private UsersService dmlReaderService;
-
-    PersonDAO personDAO;
 
     @Autowired
-    public MainController(PersonDAO personDAO) {
-        this.personDAO = personDAO;
-    }
-
+    private UsersService usersService;
 
     @GetMapping(value = "/main")
     public ModelAndView showUserInfo() {
         ModelAndView mav = new ModelAndView("mainPage");
-        mav.addObject("result", dmlReaderService.getUser());
+        mav.addObject("result", usersService.getUser());
         return mav;
     }
 
