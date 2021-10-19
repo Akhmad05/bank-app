@@ -3,6 +3,7 @@ package ru.developer.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.developer.DbConnection;
 import ru.developer.ReaderDmlCommand;
 import ru.developer.dao.PersonDAO;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-@Component
+@Service
 public class UsersService {
 
     @Autowired
