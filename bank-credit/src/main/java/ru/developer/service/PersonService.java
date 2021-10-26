@@ -1,4 +1,4 @@
-package ru.developer.Service;
+package ru.developer.service;
 
 import ru.developer.model.Person;
 
