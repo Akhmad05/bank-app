@@ -1,10 +1,10 @@
-package ru.developer.dao;
+package ru.developer.service;
 
 import ru.developer.model.Person;
 
 import java.util.List;
 
-public interface PersonDAO {
+public interface PersonService {
 //    void save(Person person);
 
     List<Person> getAll();
