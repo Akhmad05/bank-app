@@ -17,7 +17,15 @@ public class PersonServiceImpl implements PersonService {
 //        personDAO.save(person);
 //    }
 
+    @Override
     public List<Person> getAll() {
         return personDAO.getAll();
     }
+
+
+    @Override
+    public List<Person> getPerson(int id) {
+        return personDAO.getPerson(id);
+    }
+
 }

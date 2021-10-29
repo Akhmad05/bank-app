@@ -21,6 +21,9 @@ public class Person {
     @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
     List<Task> tasksList;
 
+    public Person() {
+    }
+
     public List<Task> getTasksList() {
         return tasksList;
     }

@@ -8,4 +8,6 @@ public interface PersonDAO {
 //    void save(Person person);
 
     List<Person> getAll();
+
+    List<Person> getPerson(int id);
 }

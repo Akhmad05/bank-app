@@ -25,4 +25,9 @@ public class PersonDAOImpl implements PersonDAO {
         return sessionFactory.getCurrentSession().createQuery("from Person").list();
     }
 
+    @Override
+    public List<Person> getPerson(int id) {
+        return sessionFactory.getCurrentSession().createQuery("from Person where id = :id").setParameter("id", id).list();
+    }
+
 }

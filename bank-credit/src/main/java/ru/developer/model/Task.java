@@ -17,6 +17,9 @@ public class Task {
     @ManyToOne
     Person person;
 
+    public Task() {
+    }
+
     public Person getPerson() {
         return person;
     }

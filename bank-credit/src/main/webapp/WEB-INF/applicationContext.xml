@@ -20,6 +20,8 @@
 
     <mvc:default-servlet-handler/>
 
+    <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" />
+
 
     <bean id="viewProvider"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
