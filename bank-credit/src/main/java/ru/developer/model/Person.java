@@ -18,7 +18,7 @@ public class Person {
     @Column(name = "lastname")
     private String lastname;
 
-    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Task> tasksList;
 
     public Person() {

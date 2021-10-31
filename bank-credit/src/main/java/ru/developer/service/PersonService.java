@@ -5,10 +5,14 @@ import ru.developer.model.Person;
 import java.util.List;
 
 public interface PersonService {
-//    void save(Person person);
+    void save(Person person);
 
     List<Person> getAll();
 
-    List<Person> getPerson(int id);
+    Person getPerson(int id);
+
+    void update(int id, Person person);
+
+    void delete(int id);
 
 }

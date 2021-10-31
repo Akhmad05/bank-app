@@ -15,10 +15,10 @@ public class PersonDAOImpl implements PersonDAO {
     @Autowired
     SessionFactory sessionFactory;
 
-//    @Override
-//    public void save(Person person) {
-//        sessionFactory.getCurrentSession().save(person);
-//    }
+    @Override
+    public void save(Person person) {
+        sessionFactory.getCurrentSession().save(person);
+    }
 
     @Override
     public List<Person> getAll() {
@@ -26,8 +26,23 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public List<Person> getPerson(int id) {
-        return sessionFactory.getCurrentSession().createQuery("from Person where id = :id").setParameter("id", id).list();
+    public Person getPerson(int id) {
+        Person person = sessionFactory.getCurrentSession().get(Person.class, id);
+        return person;
+    }
+
+    @Override
+    public void update(int id, Person tempPerson) {
+        Person personBeforeUpdate = getPerson(id);
+        personBeforeUpdate.setFirstname(tempPerson.getFirstname());
+        personBeforeUpdate.setLastname(tempPerson.getLastname());
+        save(personBeforeUpdate);
+    }
+
+    @Override
+    public void delete(int id) {
+        Person person = getPerson(id);
+        sessionFactory.getCurrentSession().delete(person);
     }
 
 }

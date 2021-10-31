@@ -13,9 +13,9 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonDAO personDAO;
 
-//    public void save(Person person) {
-//        personDAO.save(person);
-//    }
+    public void save(Person person) {
+        personDAO.save(person);
+    }
 
     @Override
     public List<Person> getAll() {
@@ -24,8 +24,18 @@ public class PersonServiceImpl implements PersonService {
 
 
     @Override
-    public List<Person> getPerson(int id) {
+    public Person getPerson(int id) {
         return personDAO.getPerson(id);
+    }
+
+    @Override
+    public void update(int id, Person tempPerson) {
+        personDAO.update(id, tempPerson);
+    }
+
+    @Override
+    public void delete(int id) {
+        personDAO.delete(id);
     }
 
 }
