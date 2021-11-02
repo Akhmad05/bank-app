@@ -13,7 +13,7 @@ import java.util.List;
 public class PersonDAOImpl implements PersonDAO {
 
     @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Override
     public void save(Person person) {
@@ -25,23 +25,19 @@ public class PersonDAOImpl implements PersonDAO {
         return sessionFactory.getCurrentSession().createQuery("from Person").list();
     }
 
+    @Transactional
     @Override
     public Person getPerson(int id) {
-        Person person = sessionFactory.getCurrentSession().get(Person.class, id);
-        return person;
+        return sessionFactory.getCurrentSession().get(Person.class, id);
     }
 
     @Override
-    public void update(int id, Person tempPerson) {
-        Person personBeforeUpdate = getPerson(id);
-        personBeforeUpdate.setFirstname(tempPerson.getFirstname());
-        personBeforeUpdate.setLastname(tempPerson.getLastname());
-        save(personBeforeUpdate);
+    public void update(Person person) {
+        save(person);
     }
 
     @Override
-    public void delete(int id) {
-        Person person = getPerson(id);
+    public void delete(Person person) {
         sessionFactory.getCurrentSession().delete(person);
     }
 

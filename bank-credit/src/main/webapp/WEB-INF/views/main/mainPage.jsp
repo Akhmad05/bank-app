@@ -27,6 +27,33 @@
             }
         }
     </script>
+    <script type="text/javascript">
+        function doAjaxPostDelete(id) {
+            $.ajax({
+                type: "DELETE",
+                url: "/epz/test/task/" + id,
+                data: "id=" + id,
+                success: function (response) {
+                    var person = JSON.parse(response);
+                    $(person.idElement).html(person.text);
+                },
+                error: function (e) {
+                    alert('Error: ' + e);
+                }
+            });
+        }
+    </script>
+    <style>
+        .delete{
+            text-decoration: underline;
+            color: blue;
+        }
+        .delete:hover {
+            text-decoration: none;
+            cursor: pointer
+        }
+    </style>
+
 </head>
 <body>
 <p style="text-align:center; font-size:25px;">Main page!</p>
@@ -45,7 +72,9 @@
                 <span><c:out value="${row.firstname}"/></span>
             </td>
             <td style="vertical-align: initial; padding-top: 10px;">
-                <button onclick="doAjaxPost(<c:out value="${row.id}"/>)">Показать задачи</button>
+                <button onclick="doAjaxPost(<c:out value="${row.id}"/>)">Показать задачи</button>&nbsp;&nbsp;
+                <a href="${pageContext.request.contextPath}/task/<c:out value="${row.id}"/>/new">Добавить задачу</a>
+
                 <div id="tasks<c:out value="${row.id}"/>"></div>
             </td>
             <td>

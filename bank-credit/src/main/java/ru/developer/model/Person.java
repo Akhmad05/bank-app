@@ -55,4 +55,15 @@ public class Person {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    public void removeTask(Task task) {
+        this.tasksList.remove(task);
+        task.setPerson(null);
+    }
+
+    public void addTask(Task task) {
+        this.tasksList.add(task);
+        task.setPerson(this);
+    }
+
 }

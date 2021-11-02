@@ -12,9 +12,8 @@ public interface PersonDAO {
 
     Person getPerson(int id);
 
-    void update(int id, Person person);
+    void update(Person person);
 
-    void delete(int id);
-
+    void delete(Person person);
 
 }
