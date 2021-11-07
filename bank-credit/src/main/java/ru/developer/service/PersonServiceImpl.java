@@ -32,7 +32,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void update(Person person) {
+    public void update(Person tempPerson) {
+        Person person = personDAO.getPerson(tempPerson.getId());
+        person.setFirstname(tempPerson.getFirstname());
+        person.setLastname(tempPerson.getLastname());
         personDAO.update(person);
     }
 

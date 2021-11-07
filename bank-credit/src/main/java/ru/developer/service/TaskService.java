@@ -4,11 +4,11 @@ import ru.developer.model.Person;
 import ru.developer.model.Task;
 
 public interface TaskService {
-    Person delete(Task task);
+    Person delete(int id);
 
     Task getTask(int id);
 
-    void update(Task taskBeforeUpdate);
+    void update(String name, int id);
 
-    void save(Task task);
+    void save(String name, int id);
 }

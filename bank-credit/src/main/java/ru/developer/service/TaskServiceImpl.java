@@ -14,23 +14,35 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private TaskDAO taskDAO;
 
+    @Autowired
+    private PersonService personService;
+
     @Override
-    public Person delete(Task task) {
+    public Person delete(int id) {
+        Task task = taskDAO.getTask(id);
         return taskDAO.delete(task);
     }
 
     @Override
     public Task getTask(int id) {
+
         return taskDAO.getTask(id);
     }
 
     @Override
-    public void update(Task taskBeforeUpdate) {
+    public void update(String name, int id) {
+        Task taskBeforeUpdate = taskDAO.getTask(id);
+        taskBeforeUpdate.setName(name);
         taskDAO.update(taskBeforeUpdate);
     }
 
     @Override
-    public void save(Task task) {
+    public void save(String name, int idPerson) {
+        Person person = personService.getPerson(idPerson);
+        Task task = new Task();
+        task.setName(name);
+        task.setPerson(person);
+
         taskDAO.save(task);
     }
 }

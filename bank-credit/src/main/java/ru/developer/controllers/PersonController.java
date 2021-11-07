@@ -2,7 +2,6 @@ package ru.developer.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.developer.model.Person;
@@ -23,6 +22,7 @@ public class PersonController {
     public ModelAndView showAll() {
         ModelAndView mav = new ModelAndView("main/mainPage");
         mav.addObject("results", personService.getAll());
+
         return mav;
     }
 
@@ -30,19 +30,19 @@ public class PersonController {
     public ModelAndView edit(@PathVariable int id) {
         ModelAndView mav = new ModelAndView("person/edit");
         mav.addObject("person", personService.getPerson(id));
+
         return mav;
     }
 
-    @Transactional // плохая идея указывать в контроллере, переговорить с Евгением
     @PatchMapping("/{id}")
     public String update(@PathVariable int id, @RequestParam(name = "firstname") String firstName, @RequestParam(name = "lastname") String lastName) {
 
-        Person person = personService.getPerson(id);
+        Person tempPerson = new Person();
+        tempPerson.setId(id);
+        tempPerson.setFirstname(firstName);
+        tempPerson.setLastname(lastName);
 
-        person.setFirstname(firstName);
-        person.setLastname(lastName);
-
-        personService.update(person);
+        personService.update(tempPerson);
 
         return "redirect:/main";
     }
@@ -51,6 +51,7 @@ public class PersonController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable int id) {
         personService.delete(personService.getPerson(id));
+
         return "redirect:/main";
     }
 
@@ -66,6 +67,7 @@ public class PersonController {
         person.setLastname(lastName);
 
         personService.save(person);
+
         return "redirect:/main";
     }
 
@@ -82,6 +84,7 @@ public class PersonController {
         } else {
             results = buildStringForAjax.build(person);
         }
+
         return "{\"idElement\":\"#tasks" + person.getId() + "\",\"text\":\"" + results + "\" }";
     }
 
